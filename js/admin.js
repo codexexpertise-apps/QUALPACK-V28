@@ -1,8 +1,9 @@
 /* ================================================================
-   QualPack V27 START — Admin externalisé
+   QualPack V28 — Admin externalisé
    - PIN Admin
    - Import Excel / preview / validation
-   - Formulaires rapides V27 START
+   - Formulaires rapides START
+   - Sécurité accès site par access_token
    ================================================================ */
 
 /* ================================================================
@@ -1616,13 +1617,16 @@ async function qpDemoCallResetRpc() {
     throw new Error('Connexion internet requise pour réinitialiser la démo.');
   }
 
+  const siteToken = (typeof qpGetStoredSiteToken === 'function') ? qpGetStoredSiteToken() : '';
   const siteKey = (typeof qpGetStoredSiteKey === 'function') ? qpGetStoredSiteKey() : '';
+  const resetSecret = siteToken || siteKey;
+
   const res = await fetch(`${SB_URL}/rest/v1/rpc/qualpack_reset_demo_site`, {
     method: 'POST',
     headers: { ...SB_HDR, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       p_site_id: 'qualpack_demo',
-      p_site_key: siteKey
+      p_site_key: resetSecret
     })
   });
 
