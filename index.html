@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="QualPack digitalise les autocontrôles préemballés, les tests détecteurs de métaux et les rapports qualité pour PME agroalimentaires." />
+  <title>QualPack — Contrôles préemballés et détecteurs simplifiés</title>
+
+  <style>
+    :root{
+      --navy:#071421;
+      --navy2:#0d1b2f;
+      --ink:#061126;
+      --text:#0e1b32;
+      --muted:#5b6b86;
+      --blue:#2f6fe4;
+      --blue2:#67a3ff;
+      --green:#58b878;
+      --red:#d94841;
+      --soft:#f5f9ff;
+      --card:#ffffff;
+      --border:#dbe6f5;
+      --shadow:0 22px 70px rgba(13,38,76,.14);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .topbar{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#061421,#0b2036);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:26px;letter-spacing:-.04em}
+    .brand img{width:48px;height:48px;border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+    .brand small{display:block;font-size:12px;letter-spacing:.14em;color:#86b8ff;font-weight:800;margin-top:3px}
+    .links{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:800;color:#e8f1ff}
+    .nav-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#377cf6,#2f62dd);color:#fff;padding:14px 20px;border-radius:12px;box-shadow:0 14px 32px rgba(50,108,232,.32);font-weight:900}
+    .client-btn{background:#fff;color:#08172a;box-shadow:none}
+
+    .hero{background:radial-gradient(circle at 74% 18%,#eaf3ff 0,#f8fbff 34%,#fff 68%);padding:56px 5vw 34px;overflow:hidden}
+    .hero-grid{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(360px,.88fr) minmax(520px,1.12fr);gap:46px;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;background:#e2eeff;color:#145fd1;font-weight:900;font-size:13px;letter-spacing:.02em;margin-bottom:26px}
+    h1{font-size:clamp(42px,5vw,74px);line-height:.98;letter-spacing:-.065em;margin:0 0 24px;color:#071326}
+    h1 span{color:#2f6fe4}
+    .lead{font-size:20px;line-height:1.55;color:#243853;margin:0;max-width:680px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 26px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:17px 24px;border-radius:12px;font-weight:900;border:1px solid transparent;transition:.18s transform,.18s box-shadow,.18s background;font-size:16px}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,#3278f6,#2f62dd);color:#fff;box-shadow:0 16px 38px rgba(47,111,228,.28)}
+    .btn.secondary{background:#fff;color:#12315a;border-color:#cfe0f6;box-shadow:0 12px 30px rgba(17,45,78,.10)}
+    .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px;padding-top:26px;border-top:1px solid #dfe8f5}
+    .trust{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:#50637e;font-weight:700}
+    .trust b{display:block;color:#0c1b31;font-size:14px;margin-bottom:2px}
+    .trust-ico{width:38px;height:38px;border-radius:13px;background:#eaf3ff;color:#2f6fe4;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+
+    .device-stage{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;isolation:isolate}
+    .hero-devices{width:min(940px,108%);max-width:none;filter:drop-shadow(0 34px 70px rgba(9,28,52,.20));transform:translateX(2%)}
+
+    section{padding:62px 5vw}
+    .section-inner{max-width:1480px;margin:0 auto}
+    .center{text-align:center}
+    h2{font-size:clamp(30px,3vw,44px);line-height:1.1;letter-spacing:-.04em;margin:0 0 14px;color:#071326}
+    .sub{font-size:18px;line-height:1.6;color:#5b6b86;margin:0 auto 34px;max-width:850px}
+
+    .cycle-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;position:relative}
+    .cycle-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:26px 18px;text-align:center;box-shadow:0 16px 42px rgba(17,45,78,.08);min-height:210px}
+    .cycle-ico{width:72px;height:72px;margin:0 auto 18px;border-radius:22px;background:#edf5ff;display:grid;place-items:center;font-size:34px;color:#2f6fe4}
+    .cycle-card h3{margin:0 0 10px;font-size:18px;color:#071326}
+    .cycle-card p{margin:0;color:#5b6b86;line-height:1.5;font-size:14px}
+
+    .how{background:linear-gradient(180deg,#fff,#f7faff)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:38px}
+    .step{position:relative}
+    .step-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .num{width:34px;height:34px;border-radius:999px;background:#2f6fe4;color:#fff;display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+    .step h3{font-size:18px;margin:0;color:#071326}
+    .step p{margin:5px 0 16px;color:#5b6b86;line-height:1.45;font-size:14px}
+    .shot{background:#0f1b2e;border:1px solid #dbe6f5;border-radius:18px;padding:8px;box-shadow:0 18px 46px rgba(17,45,78,.14);height:205px;display:flex;align-items:center;overflow:hidden}
+    .shot img{border-radius:12px;width:100%;height:100%;object-fit:cover}
+    .arrow{position:absolute;right:-20px;top:132px;font-size:28px;color:#5b7fb8;font-weight:900;z-index:2}
+
+    .docs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:34px}
+    .doc-card{border:1px solid var(--border);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 16px 42px rgba(17,45,78,.08)}
+    .doc-img{height:210px;background:#f5f9ff;padding:12px;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border)}
+    .doc-img img{border-radius:10px;box-shadow:0 8px 22px rgba(17,45,78,.12)}
+    .doc-card .body{padding:18px 18px 22px}
+    .doc-card h3{margin:0 0 8px;font-size:17px;color:#071326}
+    .doc-card p{margin:0;color:#5b6b86;line-height:1.45;font-size:14px}
+
+    .atelier{background:#071421;color:#fff;overflow:hidden}
+    .atelier-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
+    .atelier h2{color:#fff}.atelier .sub{color:#b9cae3;margin-left:0}
+    .device-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .device-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px;font-weight:900;color:#fff}
+    .device-item small{display:block;color:#9fb4d2;font-weight:700;margin-top:6px;line-height:1.4}
+    .atelier-img{border-radius:28px;background:#111e33;border:1px solid rgba(255,255,255,.12);padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .atelier-img img{border-radius:18px}
+
+    .positioning{padding-top:42px}
+    .pos-box{display:grid;grid-template-columns:84px 1fr auto;gap:22px;align-items:center;background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #d8e7fb;border-radius:26px;padding:28px;box-shadow:0 18px 50px rgba(17,45,78,.09)}
+    .pos-ico{width:84px;height:84px;border-radius:26px;background:#e1efff;color:#2f6fe4;display:grid;place-items:center;font-size:42px}
+    .pos-box h2{font-size:28px;margin-bottom:10px;color:#1d5ed4}.pos-box p{margin:0;color:#243853;line-height:1.58;font-size:15px;max-width:890px}
+    .secure{margin-top:12px;color:#5b6b86;font-size:14px;font-weight:700;text-align:center}
+
+    footer{background:linear-gradient(135deg,#061421,#0b2036);color:#fff;padding:34px 5vw 24px}
+    .footer-grid{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:28px}
+    footer h3{font-size:26px;margin:0 0 12px} footer h4{margin:0 0 12px;color:#86b8ff;text-transform:uppercase;letter-spacing:.14em;font-size:13px}
+    footer p,footer li{color:#c7d7ed;line-height:1.6;font-size:14px} footer ul{list-style:none;padding:0;margin:0} footer li::before{content:'✓ ';color:#86b8ff}.copyright{text-align:center;color:#c7d7ed;padding-top:22px;font-size:13px}
+
+    @media(max-width:1100px){.links{display:none}.hero-grid,.atelier-grid{grid-template-columns:1fr}.device-stage{min-height:auto}.hero-devices{width:100%;transform:none}.trust-row,.cycle-grid,.steps,.docs-grid{grid-template-columns:1fr 1fr}.arrow{display:none}.pos-box{grid-template-columns:1fr}.pos-box .btn{width:100%}}
+    @media(max-width:700px){.nav{height:auto;padding:16px 5vw}.brand{font-size:22px}.client-btn{display:none}.hero{padding-top:34px}h1{font-size:42px}.lead{font-size:18px}.hero-actions .btn{width:100%}.trust-row,.cycle-grid,.steps,.docs-grid,.device-list,.footer-grid{grid-template-columns:1fr}.shot{height:220px}.doc-img{height:250px}.pos-box{padding:22px}.atelier{padding-top:48px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#top" aria-label="Accueil QualPack">
+        <img src="./assets/icon-192.png" alt="Logo QualPack" />
+        <span>QualPack<small>Assistant qualité</small></span>
+      </a>
+      <div class="links" aria-label="Navigation principale">
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#documents">Documents</a>
+        <a href="#positionnement">Positionnement</a>
+        <a id="header-access-app" class="nav-btn client-btn" href="app.html">Espace client</a>
+        <a id="access-demo-nav" class="nav-btn" href="app.html?site_id=qualpack_demo">▶ Tester la démo</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="pill">AUTOCONTRÔLES PRÉEMBALLÉS & DÉTECTEURS</div>
+          <h1>Contrôles simples.<br />Résultats clairs.<br /><span>Audits sereins.</span></h1>
+          <p class="lead">Réalisez vos contrôles préemballés TU1 / TU2 et vos tests détecteurs de métaux en quelques minutes. Générez instantanément vos rapports PDF et Excel prêts pour vos audits.</p>
+          <div class="hero-actions">
+            <a id="access-demo-hero" class="btn primary" href="app.html?site_id=qualpack_demo">▶ Tester la démo terrain</a>
+            <a class="btn secondary" href="#documents">📄 Voir des exemples de rapports</a>
+          </div>
+          <div class="trust-row">
+            <div class="trust"><div class="trust-ico">🛡️</div><div><b>Simple & fiable</b>Saisie guidée pour le terrain</div></div>
+            <div class="trust"><div class="trust-ico">📄</div><div><b>Audit-friendly</b>PDF & Excel instantanés</div></div>
+            <div class="trust"><div class="trust-ico">☁️</div><div><b>Mode offline</b>Continuité même sans réseau</div></div>
+            <div class="trust"><div class="trust-ico">🔒</div><div><b>Sécurisé</b>Données protégées par site</div></div>
+          </div>
+        </div>
+        <div class="device-stage" aria-label="Aperçu de QualPack sur PC, tablette et smartphone">
+          <img class="hero-devices" src="./assets/landing/image_pc_tablette_smartphone.png" alt="QualPack affiché sur PC, tablette et smartphone" />
+        </div>
+      </div>
+    </section>
+
+    <section id="fonctionnalites">
+      <div class="section-inner center">
+        <h2>Tout le cycle qualité dans un seul outil</h2>
+        <p class="sub">QUALPACK accompagne l’opérateur et le responsable qualité du contrôle terrain jusqu’au dossier d’audit.</p>
+        <div class="cycle-grid">
+          <div class="cycle-card"><div class="cycle-ico">⚖️</div><h3>Contrôles TU1 / TU2</h3><p>Saisissez vos pesées et laissez QualPack calculer les seuils automatiquement.</p></div>
+          <div class="cycle-card"><div class="cycle-ico">🔍</div><h3>Tests détecteurs</h3><p>Ferreux, non ferreux et inox : test guidé, verdict immédiat.</p></div>
+          <div class="cycle-card"><div class="cycle-ico">📄</div><h3>Rapports PDF</h3><p>Documents clairs pour les audits internes et externes.</p></div>
+          <div class="cycle-card"><div class="cycle-ico">📊</div><h3>Exports Excel</h3><p>Données structurées pour analyse, partage ou archivage.</p></div>
+          <div class="cycle-card"><div class="cycle-ico">📈</div><h3>Dashboard qualité</h3><p>Suivi des contrôles, non-conformités et tendances qualité.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="fonctionnement" class="how">
+      <div class="section-inner center">
+        <h2>Comment ça fonctionne ?</h2>
+        <p class="sub">Un parcours simple : contrôle, verdict, documents, pilotage.</p>
+        <div class="steps">
+          <div class="step"><div class="step-head"><span class="num">1</span><h3>Réalisez votre contrôle</h3></div><p>Saisie rapide et guidée des pesées en atelier.</p><div class="shot"><img src="./assets/landing/pesees-complete.png" alt="Saisie d'un contrôle de pesée" /></div><div class="arrow">→</div></div>
+          <div class="step"><div class="step-head"><span class="num">2</span><h3>Obtenez votre verdict</h3></div><p>Résultats automatiques sur poids net, TU1 et TU2.</p><div class="shot"><img src="./assets/landing/resultats-pesees.png" alt="Verdict d'échantillon" /></div><div class="arrow">→</div></div>
+          <div class="step"><div class="step-head"><span class="num">3</span><h3>Générez vos documents</h3></div><p>PDF et Excel prêts pour vos audits et vos suivis.</p><div class="shot"><img src="./assets/landing/pdf-pesees.png" alt="Rapport PDF préemballés" /></div><div class="arrow">→</div></div>
+          <div class="step"><div class="step-head"><span class="num">4</span><h3>Suivez votre activité</h3></div><p>Dashboard qualité, historique et alertes à surveiller.</p><div class="shot"><img src="./assets/landing/dashboard.png" alt="Dashboard qualité" /></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="atelier">
+      <div class="section-inner atelier-grid">
+        <div>
+          <h2>Pensé pour l’atelier, utilisé partout.</h2>
+          <p class="sub">QUALPACK est conçu pour les PME agroalimentaires qui veulent remplacer les feuilles papier et fichiers Excel dispersés par une saisie simple, traçable et exploitable.</p>
+          <div class="device-list">
+            <div class="device-item">📱 Smartphone<small>Pratique pour l’opérateur terrain.</small></div>
+            <div class="device-item">▯ Tablette<small>Confortable en zone de contrôle.</small></div>
+            <div class="device-item">💻 PC<small>Idéal pour le suivi qualité et les audits.</small></div>
+          </div>
+        </div>
+        <div class="atelier-img"><img src="./assets/landing/detecteur-resultat.png" alt="Contrôle détecteur de métaux QualPack" /></div>
+      </div>
+    </section>
+
+    <section id="documents">
+      <div class="section-inner center">
+        <h2>Des documents clairs, générés automatiquement</h2>
+        <p class="sub">Chaque contrôle peut produire un document exploitable : rapport préemballés, rapport détecteur, rapport qualité global ou export Excel.</p>
+        <div class="docs-grid">
+          <div class="doc-card"><div class="doc-img"><img src="./assets/landing/pdf-pesees.png" alt="Rapport contrôle préemballés" /></div><div class="body"><h3>Rapport contrôle préemballés</h3><p>Calculs TU1 / TU2, statistiques, poids brut, poids net et verdict.</p></div></div>
+          <div class="doc-card"><div class="doc-img"><img src="./assets/landing/pdf-detecteur.png" alt="Rapport détecteur de métaux" /></div><div class="body"><h3>Rapport détecteur de métaux</h3><p>Tests ferreux, non ferreux, inox et verdict global du contrôle.</p></div></div>
+          <div class="doc-card"><div class="doc-img"><img src="./assets/landing/pdf-qualite.png" alt="Rapport qualité global" /></div><div class="body"><h3>Rapport qualité global</h3><p>Synthèse d’activité, alertes qualité et recommandations.</p></div></div>
+          <div class="doc-card"><div class="doc-img"><img src="./assets/landing/excel-preview.png" alt="Export Excel QualPack" /></div><div class="body"><h3>Export Excel</h3><p>Données structurées pour analyse, archivage ou partage qualité.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="positionnement" class="positioning">
+      <div class="section-inner">
+        <div class="pos-box">
+          <div class="pos-ico">🎯</div>
+          <div>
+            <h2>Positionnement de QUALPACK</h2>
+            <p>QUALPACK est un outil d’autocontrôle et de traçabilité destiné aux PME agroalimentaires. Il accompagne les équipes qualité dans leurs vérifications quotidiennes grâce à des calculs automatisés, des rapports PDF et des exports Excel. La décision finale concernant la conformité des lots reste sous la responsabilité du service qualité.</p>
+          </div>
+          <div>
+            <a id="access-demo-bottom" class="btn primary" href="app.html?site_id=qualpack_demo">▶ Tester la démo terrain</a>
+            <div class="secure">🔒 Connexion sécurisée à votre espace qualité</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div><h3>QualPack</h3><p>La solution terrain dédiée aux autocontrôles préemballés, aux tests détecteurs de métaux et à la traçabilité qualité des PME agroalimentaires.</p></div>
+      <div><h4>Fonctionnalités</h4><ul><li>Contrôles poids TU1 / TU2</li><li>Tests détecteurs</li><li>Rapports PDF</li><li>Exports Excel</li><li>Dashboard qualité</li></ul></div>
+      <div><h4>CODEX EXPERTISE</h4><p>Spécialiste qualité agroalimentaire, contrôle terrain et solutions simples pour PME industrielles.</p></div>
+    </div>
+    <div class="copyright">© 2026 CODEX EXPERTISE — Tous droits réservés.</div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const siteId = params.get('site_id');
+    const appUrl = siteId ? `app.html?site_id=${encodeURIComponent(siteId)}` : 'app.html';
+    const demoUrl = 'app.html?site_id=qualpack_demo';
+    ['header-access-app'].forEach(id => { const el = document.getElementById(id); if (el) el.href = appUrl; });
+    ['access-demo-nav','access-demo-hero','access-demo-bottom'].forEach(id => { const el = document.getElementById(id); if (el) el.href = demoUrl; });
+  </script>
+</body>
+</html>
