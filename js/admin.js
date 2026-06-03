@@ -1591,13 +1591,10 @@ async function adminV27AddProduit() {
   if (!nom) { toast('Saisissez le produit', 'err'); return; }
   if (!Number.isFinite(qn) || qn <= 0) { toast('Saisissez un Qn valide', 'err'); return; }
 
-  const lineLimitCheck = qpStartCheckLineLimit(ligne ? [ligne] : []);
-  if (!lineLimitCheck.ok) {
-    toast(lineLimitCheck.message, 'err');
-    adminV27SetStatus(lineLimitCheck.message, 'err');
-    return;
-  }
-
+  // V28 START :
+  // le produit est rattaché automatiquement à la ligne START existante.
+  // L’ajout produit ne crée plus de nouvelle ligne, donc aucun contrôle de limite ligne ici.
+   
   try {
     adminV27SetStatus('Ajout produit en cours...');
     const client_id = await adminV27EnsureClient(clientNom);
