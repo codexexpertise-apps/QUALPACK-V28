@@ -1374,11 +1374,10 @@ function qpStartCollectLineNames() {
     adminV27GetStartRows('lignes').forEach(row => names.push(row?.label || row?.nom || row?.name || ''));
   } catch (e) {}
 
-  // Lignes créées indirectement depuis les produits START.
-  // Important : empêche le contournement de licence via le champ "Ligne de production" du produit.
-  try {
-    adminV27GetStartRows('produits').forEach(row => names.push(row?.ligne_prod || row?.ligne || ''));
-  } catch (e) {}
+    // V28 START :
+  // les produits sont désormais rattachés automatiquement à la ligne START déjà créée.
+  // On ne recompte donc plus les lignes issues des produits pour éviter les faux blocages
+  // sur les sites de test contenant d’anciens produits ou imports historiques.
 
   // Lignes issues d'un import Excel déjà préparé en mémoire.
   try {
