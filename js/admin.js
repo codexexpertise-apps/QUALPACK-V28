@@ -1362,32 +1362,21 @@ function qpStartGetLineLimit() {
 function qpStartCollectLineNames() {
   const names = [];
 
-  // Catalogue opérationnel déjà présent localement.
+  // V28 START :
+  // on ne compte que les lignes explicitement créées dans la configuration START.
+  // On ignore volontairement l'ancien catalogue local et les anciens produits/imports
+  // pour éviter les faux blocages de licence sur les sites de test.
   try {
-    if (typeof getStoredLineCatalogue === 'function') {
-      names.push(...getStoredLineCatalogue());
-    }
-  } catch (e) {}
-
-  // Lignes explicitement créées dans START.
-  try {
-    adminV27GetStartRows('lignes').forEach(row => names.push(row?.label || row?.nom || row?.name || ''));
-  } catch (e) {}
-
-    // V28 START :
-  // les produits sont désormais rattachés automatiquement à la ligne START déjà créée.
-  // On ne recompte donc plus les lignes issues des produits pour éviter les faux blocages
-  // sur les sites de test contenant d’anciens produits ou imports historiques.
-
-  // Lignes issues d'un import Excel déjà préparé en mémoire.
-  try {
-    if (Array.isArray(_importLinesData)) {
-      _importLinesData.forEach(row => names.push(row?.nom || row?.ligne || row?.label || ''));
-    }
+    adminV27GetStartRows('lignes').forEach(row => {
+      names.push(row?.label || row?.nom || row?.name || '');
+    });
   } catch (e) {}
 
   return Array.from(new Set(
-    names.map(v => String(v || '').trim()).filter(Boolean).map(v => adminV27Norm(v))
+    names
+      .map(v => String(v || '').trim())
+      .filter(Boolean)
+      .map(v => adminV27Norm(v))
   ));
 }
 
