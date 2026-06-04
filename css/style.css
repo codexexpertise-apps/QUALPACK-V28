@@ -1530,7 +1530,11 @@ html, body {
 
 /* ---- SIDEBAR LOGOUT V28 ---- */
 .sidebar-logout-btn {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
